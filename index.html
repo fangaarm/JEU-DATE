@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Les grandes dates des droits de la femme, et les inégalités hommes/femmes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main class="app">
+
+    <!-- ================= HEADER ================= -->
+    <header class="top">
+      <h1>Les grandes dates des droits de la femme, et les inégalités hommes/femmes</h1>
+      <p class="subtitle">
+        Dates clés & chiffres d’inégalités — version « pendu » (3 erreurs max)
+      </p>
+    </header>
+
+    <!-- ================= ACCUEIL ================= -->
+    <section id="screen-home" class="card">
+      <h2>Règles</h2>
+      <ul>
+        <li>À chaque manche : une question (date, chiffre ou comparaison).</li>
+        <li>Réponds en tapant la valeur ou en choisissant Femme / Homme.</li>
+        <li>3 erreurs maximum.</li>
+        <li>À la fin : une note sur 20 selon ta réussite.</li>
+      </ul>
+
+      <button id="btnStart" class="btn primary">Lancer le jeu</button>
+    </section>
+
+    <!-- ================= JEU ================= -->
+    <section id="screen-game" class="card hidden">
+
+      <!-- Haut du jeu -->
+      <div class="game-head">
+        <div class="pill" id="progress">Question 1/10</div>
+        <div class="pill" id="scoreLive">Score : 0</div>
+      </div>
+
+      <h2 id="questionTitle">Question</h2>
+      <p id="questionText" class="question"></p>
+
+      <!-- Bonhomme / erreurs -->
+      <div class="hangman">
+        <div class="face" id="face">🙂</div>
+        <div class="errors">
+          Erreurs : <span id="errors">0</span>/3
+        </div>
+      </div>
+
+      <!-- ================= RÉPONSE ================= -->
+      <div class="answer">
+
+        <div class="label">Ta réponse :</div>
+
+        <!-- MODE SAISIE (dates / chiffres) -->
+        <div class="inputRow">
+          <input
+            id="answerInput"
+            class="answerInput"
+            type="text"
+            inputmode="decimal"
+            placeholder="Ex : 1944 ou 27.4"
+            autocomplete="off"
+          />
+          <button id="btnValidate" class="btn primary">Valider</button>
+        </div>
+
+        <!-- MODE CHOIX (balance Femme / Homme) -->
+        <div id="choiceWrap" class="choiceWrap hidden">
+          <div class="label" style="margin-top:10px;">Choisis :</div>
+          <div class="choiceBtns">
+            <button id="btnChoiceWomen" class="btn choiceBtn" aria-pressed="false">
+              <span class="choiceIcon" aria-hidden="true">♀</span>
+              <span class="choiceLabel">Femme</span>
+              <span class="choiceMark" aria-hidden="true"></span>
+            </button>
+            <button id="btnChoiceMen" class="btn choiceBtn" aria-pressed="false">
+              <span class="choiceIcon" aria-hidden="true">♂</span>
+              <span class="choiceLabel">Homme</span>
+              <span class="choiceMark" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <!-- ===== fin .answer ===== -->
+
+      <!-- Feedback -->
+      <div id="feedback" class="feedback hidden"></div>
+      <div id="explain" class="explain hidden"></div>
+
+      <!-- Navigation -->
+      <div class="nav">
+        <button id="btnNext" class="btn primary hidden">
+          Question suivante
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ================= RÉSULTAT ================= -->
+    <section id="screen-end" class="card hidden">
+      <h2>Résultat</h2>
+
+      <p class="big">
+        Ta note : <span id="finalGrade">—</span>/20
+      </p>
+
+      <p id="finalMsg"></p>
+
+      <div class="summary" id="summary"></div>
+
+      <button id="btnRestart" class="btn primary">Rejouer</button>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="foot">
+      <small>Projet pédagogique</small>
+    </footer>
+
+  </main>
+
+  <!-- ================= POPUP RÉVÉLATION ================= -->
+  <div id="answerPopup" class="popup hidden" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <div class="popupCard">
+      <div class="popupArt" aria-hidden="true">
+        <svg viewBox="0 0 140 140" role="img">
+          <circle cx="70" cy="70" r="56" fill="#ffe4ea"/>
+          <circle cx="70" cy="70" r="46" fill="#fff6f8"/>
+          <circle cx="52" cy="60" r="6" fill="#2f2a30"/>
+          <circle cx="88" cy="60" r="6" fill="#2f2a30"/>
+          <path d="M50 86c12-12 28-12 40 0" stroke="#2f2a30" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M46 76c-10 12-10 28 0 40" stroke="#6cc6ff" stroke-width="8" stroke-linecap="round" fill="none"/>
+          <path d="M94 76c10 12 10 28 0 40" stroke="#6cc6ff" stroke-width="8" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="popupText">
+        <p class="popupTitle" id="popupTitle">Oups… trop d’erreurs !</p>
+        <p class="popupAnswer" id="popupAnswer">La bonne réponse était :</p>
+      </div>
+      <button id="btnClosePopup" class="btn primary">Compris</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
